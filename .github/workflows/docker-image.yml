@@ -17,3 +17,29 @@ jobs:
         - run: |
             docker build . -t ${{ secrets.ACR_HOSTNAME }}/hello-python:latest
             docker push       ${{ secrets.ACR_HOSTNAME }}/hello-python:latest
+
+        - name: Azure login
+            id: login
+            uses: azure/login@v1.4.3
+            with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+            
+        - name: Set AKS context
+            id: set-context
+            uses: azure/aks-set-context@v3
+            with:
+            resource-group: '${{ secrets.RG }}' 
+            cluster-name: '${{ secrets.CLUSTER_NAME }}'
+            
+        - name: Setup kubectl
+            id: install-kubectl
+            uses: azure/setup-kubectl@v3
+            
+        - name: Deploy to AKS
+            id: deploy-aks
+            uses: Azure/k8s-deploy@v4
+            with:
+              namespace: 'default'
+              manifests: |
+                 azure-vote-all-in-one-redis.yaml
+              images: '${{ secrets.ACR_HOSTNAME }}/hello-python:latest'

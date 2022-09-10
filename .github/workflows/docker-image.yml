@@ -15,5 +15,5 @@ jobs:
             username: ${{ secrets.ACR_USER }}
             password: ${{ secrets.ACR_PASSWORD }}
         - run: |
-            docker build . -t ${{ secrets.ACR_HOSTNAME }}/hello-python:${{ github.sha }}
-            docker push       ${{ secrets.ACR_HOSTNAME }}/hello-python:${{ github.sha }}
+            docker build . -t ${{ secrets.ACR_HOSTNAME }}/hello-python:latest
+            docker push       ${{ secrets.ACR_HOSTNAME }}/hello-python:latest

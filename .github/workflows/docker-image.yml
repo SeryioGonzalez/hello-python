@@ -48,8 +48,8 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${{env.ENVIRONMENT_NAME}}"rg"
-          cluster-name: ${{env.ENVIRONMENT_NAME}}"-az-arc-k8s-cluster"
+          resource-group: ${ {env.ENVIRONMENT_NAME }}"rg"
+          cluster-name: ${{ env.ENVIRONMENT_NAME }}
 
       - name: Run Helm Deploy
         run: |

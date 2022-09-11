@@ -55,5 +55,8 @@ jobs:
       - name: Deploy to Kubernetes cluster
         uses: Azure/k8s-deploy@v4
         with:
-          manifests: .
+          action: deploy
+          strategy: basic
+          manifests: |
+            deployment.yaml
 

@@ -45,11 +45,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install Helm
-        uses: Azure/setup-helm@v1
-        with:
-          version: v3.3.1
-
       - name: Get AKS Credentials
         uses: Azure/aks-set-context@v1
         with:
@@ -65,5 +60,5 @@ jobs:
           manifests: |
             deployment.yaml
           images: |
-            ${{secrets.ACR_HOSTNAME}}/hello-python:latest
+            ${{secrets.ACR_HOSTNAME}}/hello-python:${{ steps.meta.outputs.tags }}
 

@@ -2,7 +2,7 @@ on: [push]
 name: Build and push the tagged build to production
 
 env:
-  ENVIRONMENT_NAME: seryioarc
+  ENVIRONMENT_NAME: sergioarc
 
 jobs:
   build_push_image:

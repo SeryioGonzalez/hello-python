@@ -3,6 +3,7 @@ name: Build and push the tagged build to production
 
 env:
   ENVIRONMENT_NAME: sergioaks
+  RG: sergioaksrg
 
 jobs:
   build_push_image:
@@ -48,7 +49,7 @@ jobs:
         uses: Azure/aks-set-context@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-          resource-group: ${ {env.ENVIRONMENT_NAME }}"rg"
+          resource-group: ${{ env.RG }}
           cluster-name: ${{ env.ENVIRONMENT_NAME }}
 
       - name: Run Helm Deploy

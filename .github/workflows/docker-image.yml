@@ -60,5 +60,5 @@ jobs:
           manifests: |
             deployment.yaml
           images: |
-            ${{secrets.ACR_HOSTNAME}}/hello-python:${{ steps.meta.outputs.tags }}
+            ${{secrets.ACR_HOSTNAME}}/hello-python:${{ steps.build_push_image.meta.outputs.tags }}
 

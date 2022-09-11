@@ -61,6 +61,6 @@ jobs:
             --wait \
             --namespace production \
             hello-python \
-            ./kubernetes/hello-python \
+            . \
             --set image.repository=${{ secrets.ACR_HOSTNAME }} \
             --set image.tag=${GITHUB_REF##*/}

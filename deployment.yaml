@@ -29,6 +29,6 @@ spec:
     spec:
       containers:
       - name: hello-python
-        image: hello-python:latest
+        image: sergioregistry.azurecr.io/hello-python:latest
         ports:
         - containerPort: 5000

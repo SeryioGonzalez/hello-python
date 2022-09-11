@@ -17,8 +17,13 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hello-python
+  labels:
+    app: hello-python
 spec:
   replicas: 4
+  selector:
+    matchLabels:
+      app: hello-python
   template:
     metadata:
       labels:
@@ -27,6 +32,5 @@ spec:
       containers:
       - name: hello-python
         image: hello-python:latest
-        imagePullPolicy: Never
         ports:
         - containerPort: 5000

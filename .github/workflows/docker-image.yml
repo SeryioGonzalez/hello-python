@@ -52,15 +52,8 @@ jobs:
           resource-group: ${{ env.RG }}
           cluster-name: ${{ env.ENVIRONMENT_NAME }}
 
-      - name: Run Helm Deploy
-        run: |
-          helm upgrade \
-            --install \
-            --create-namespace \
-            --atomic \
-            --wait \
-            --namespace production \
-            hello-python \
-            . \
-            --set image.repository=${{ secrets.ACR_HOSTNAME }} \
-            --set image.tag=${GITHUB_REF##*/}
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v4
+        with:
+          manifests: .
+

@@ -1,4 +1,8 @@
-on: [push]
+on:
+  push:
+    tags:        
+      - 'v*'     
+      
 name: Build and push the tagged build to production
 
 env:
@@ -60,5 +64,5 @@ jobs:
           manifests: |
             deployment.yaml
           images: |
-            ${{secrets.ACR_HOSTNAME}}/hello-python:${{ steps.build_push_image.meta.outputs.tags }}
+            ${{secrets.ACR_HOSTNAME}}/hello-python:${{ jobs.build_push_image.steps.meta.outputs.tags }}
 
